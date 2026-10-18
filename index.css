@@ -1,9 +1,31 @@
+@font-face {
+  font-family: "Archivo";
+  src: 
+       url("src/font/Archivo-Variable.ttf") format("truetype");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Archivo";
+  src: 
+url("src/font/Archivo-Variable-italic.ttf") format("truetype");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-style: italic;
+  font-display: swap;
+}
+
+
 :root {
-  --red: #da1020;
-  --white: #ffffff;
-  --rule-strong: 3px solid var(--white);
-  --rule-soft: 1px solid rgba(255, 255, 255, 0.4);
+ --red: oklch(0.55 0.22 27);
+  --white: oklch(1 0 0);
+   --rule-strong: 3px solid var(--white);
+  --rule-soft: 1px solid color-mix(in oklch, var(--white) 40%, transparent);
   --gutter: clamp(16px, 2.5vw, 32px);
+  --title-size: clamp(2.75rem, 13vw, 11rem);
 }
 
 *,
@@ -31,42 +53,37 @@ main {
 }
 
 /* ---------- Header ---------- */
-
 header {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: var(--gutter);
+  align-items: center;
+  flex-wrap: wrap;
+  gap: clamp(14px, 3vw, 40px);
+  margin: clamp(16px, 4vw, 48px) 0 clamp(40px, 7vw, 96px);
 }
 
-header nav img {
+ img {
   display: block;
-  height: clamp(44px, 9vw, 80px);
+  height: calc(var(--title-size) * 0.85);
   width: auto;
-  max-width: 100%;
 }
-
-/* ---------- Headline ---------- */
 
 .title {
-  margin: clamp(48px, 10vw, 140px) 0 clamp(40px, 7vw, 96px);
-  font-size: clamp(3.5rem, 15vw, 11rem);
+  margin: 0;
+  font-size: var(--title-size);
   font-stretch: 125%;
   font-weight: 900;
   line-height: 0.85;
   letter-spacing: -0.04em;
 }
 
-/* ---------- Menu groups ---------- */
-
 .group {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   column-gap: var(--gutter);
-  padding: 14px 0 clamp(40px, 6vw, 72px);
-  border-top: var(--rule-strong);
+  padding: 14px 0 clamp(40px, 6vw, 4px);
+  border-bottom: var(--rule-strong);
 }
-
+ 
 .group h2 {
   grid-column: 1 / span 4;
   margin: 0;
@@ -74,8 +91,10 @@ header nav img {
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.025em;
-}
+    font-style: italic;
 
+}
+ 
 .group ul,
 .group .match {
   grid-column: 5 / -1;
@@ -83,7 +102,7 @@ header nav img {
   padding: 0;
   list-style: none;
 }
-
+ 
 /* Drink name left, price right, same line */
 .group li {
   display: flex;
@@ -93,20 +112,15 @@ header nav img {
   padding: 11px 0;
   font-size: clamp(1rem, 1.5vw, 1.1875rem);
 }
-
+ 
 .group li:first-child {
   padding-top: 4px;
 }
-
-.group li:last-child {
-  border-bottom: none;
-}
-
-
+ 
 .group li span {
   font-weight: 600;
 }
-
+ 
 /* Measure / type, quieter than the name */
 .group small {
   display: block;
@@ -114,40 +128,40 @@ header nav img {
   font-size: 0.85em;
   font-weight: 400;
 }
-
+ 
 .group b {
   flex-shrink: 0;
   font-weight: 800;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
-
+ 
 /* ---------- Last game ---------- */
-
+ 
 .match {
   display: grid;
   grid-template-columns: auto 1fr auto 1fr auto;
   align-items: center;
   column-gap: clamp(10px, 2vw, 24px);
 }
-
+ 
 .crest {
   display: block;
   width: clamp(44px, 7vw, 68px);
   height: clamp(44px, 7vw, 68px);
   object-fit: contain;
 }
-
+ 
 .team {
   font-size: clamp(1rem, 2vw, 1.5rem);
   font-weight: 700;
   line-height: 1.15;
 }
-
+ 
 .team-away {
   text-align: right;
 }
-
+ 
 .score {
   font-size: clamp(2.5rem, 6vw, 4.75rem);
   font-stretch: 125%;
@@ -157,6 +171,46 @@ header nav img {
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
+ 
+/* Date + time stacked in the middle of the upcoming match */
+.score-when {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+ 
+/* Match details: label left, value right */
+.facts {
+  grid-column: 5 / -1;
+  margin: 18px 0 0;
+  padding: 0;
+}
+ 
+.facts div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 11px 0;
+  font-size: clamp(1rem, 1.5vw, 1.1875rem);
+}
+ 
+.facts div:first-child {
+  border-top: var(--rule-soft);
+}
+ 
+.facts dt {
+  font-weight: 400;
+}
+ 
+.facts dd {
+  margin: 0;
+  font-weight: 700;
+  text-align: right;
+}
+ 
 
 /* ---------- Footer ---------- */
 
@@ -237,11 +291,30 @@ address {
   outline-offset: 6px;
 }
 
+.club-footer-img {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
 /* ---------- Small screens ---------- */
 
 @media (max-width: 760px) {
   .group {
     padding-top: 32px;
+  }
+
+.group:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+
+.group:first-child img {
+    height: 82px;
   }
 
   .group h2,
@@ -259,6 +332,7 @@ address {
   }
 
   /* Crest above name on each side, score in the middle */
+ 
   .match {
     grid-template-columns: 1fr auto 1fr;
     grid-template-areas:
@@ -267,13 +341,13 @@ address {
     row-gap: 10px;
     align-items: start;
   }
-
+ 
   .crest-home { grid-area: hc; justify-self: center; }
   .crest-away { grid-area: ac; justify-self: center; }
   .team-home  { grid-area: hn; text-align: center; }
   .team-away  { grid-area: an; text-align: center; }
   .score      { grid-area: sc; align-self: center; }
-
+ 
   .footer-grid {
     grid-template-columns: 1fr;
     row-gap: 36px;
@@ -283,4 +357,12 @@ address {
   .footer-grid > div {
     grid-column: 1 / -1;
   }
+
+  .club-footer-img {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
+  
+}
+@media (max-width: 760px) { .facts, .match { grid-column: 1 / -1; } }

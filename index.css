@@ -80,7 +80,8 @@ header {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   column-gap: var(--gutter);
-  padding: 14px 0 clamp(40px, 6vw, 4px);
+  padding: 7px 0 clamp(20px, 2vw, 4px);
+  margin: 7px 0 clamp(20px, 2vw, 4px);
   border-bottom: var(--rule-strong);
 }
  
@@ -91,7 +92,6 @@ header {
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.025em;
-    font-style: italic;
 
 }
  
@@ -198,7 +198,6 @@ header {
 }
  
 .facts div:first-child {
-  border-top: var(--rule-soft);
 }
  
 .facts dt {
@@ -225,7 +224,6 @@ footer {
   grid-template-columns: repeat(12, 1fr);
   column-gap: var(--gutter);
   padding-top: 14px;
-  border-top: var(--rule-strong);
 }
 
 .footer-grid > div {
@@ -308,8 +306,8 @@ address {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 0rem;
+    padding-right: 0rem;
   }
 
 
